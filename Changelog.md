@@ -1,3 +1,7 @@
+## 2015-03-08
+
+* Initial MOJ Digital Release of both 12.04 and 14.04 boxes
+
 ## 2014-05-11
 
  * The Ubuntu 12.04 boxes have been upgraded to kernel 3.13 (Trusty kernel). This is because even the updated VMWare Tools still occasionally caused kernel panics on kernel 3.8. In our tests, we've observed that VMWare Tools does not cause any kernel panics on kernel 3.13.
