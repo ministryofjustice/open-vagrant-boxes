@@ -1,7 +1,5 @@
-# We do not use 6.0.2 because of a HGFS bug:
-# https://communities.vmware.com/thread/462303
-VMWARE_TOOLS_URL = "https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/6.0.3/1747349/packages/com.vmware.fusion.tools.linux.zip.tar"
-VMWARE_TOOLS_ARCHIVE = "VMwareTools-9.6.2-1688356.tar.gz"
+VMWARE_TOOLS_URL = "https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/7.1.1/2498930/packages/com.vmware.fusion.tools.linux.zip.tar"
+VMWARE_TOOLS_ARCHIVE = "VMwareTools-9.9.2-2496486.tar.gz"
 VERSION = "2014-05-11"
 WEBSERVER = "juvia-helper.phusion.nl"
 WEBROOT = "/srv/oss_binaries_passenger/vagrant/boxes/#{VERSION}"
