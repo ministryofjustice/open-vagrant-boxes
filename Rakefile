@@ -69,7 +69,7 @@ DISTRO_RELEASES.each do |distro_release|
 
   desc "Import VirtualBox box file into Vagrant"
   task "virtualbox:#{distro_release}:import_box" do
-    sh "vagrant box add phusion-open-#{distro_release} #{distro_release}-vbox.box --force"
+    sh "vagrant box add mojdigital-#{distro_release} #{distro_release}-vbox.box --force"
   end
 
 
@@ -125,7 +125,7 @@ DISTRO_RELEASES.each do |distro_release|
 
   desc "Import VMWare Fusion box file into Vagrant"
   task "vmware_fusion:#{distro_release}:import_box" do
-    sh "vagrant box add phusion-open-#{distro_release} #{distro_release}-vmwarefusion.box --force"
+    sh "vagrant box add mojdigital-#{distro_release} #{distro_release}-vmwarefusion.box --force"
   end
 end
 
