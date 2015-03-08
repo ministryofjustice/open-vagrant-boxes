@@ -1,6 +1,7 @@
 postinstall_files = [
   "base.sh",
   "vagrant.sh",
+  "salt.sh",
   "chef.sh",
   "puppet.sh",
   "memory_swap_accounting.sh",
