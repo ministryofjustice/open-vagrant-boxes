@@ -10,7 +10,6 @@ if [[ "$1" = vmfusion ]]; then
 	sleep 5
 fi
 
-apt-get remove -y build-essential
 apt-get -y autoremove
 apt-get clean
 
