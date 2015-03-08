@@ -3,7 +3,7 @@
 <img src="http://blog.phusion.nl/wp-content/uploads/2013/11/vagrant.png" height="150">
 <img src="http://blog.phusion.nl/wp-content/uploads/2013/11/docker.png" height="150">
 
-This repository contains definitions for various Docker-friendly [Vagrant](http://www.vagrantup.com/) base boxes. There are boxes that are based on Ubuntu 12.04 64-bit, and boxes that are based on Ubuntu 14.04 64-bit. They differ from the ones provided by vagrantup.com in the following ways:
+This repository contains definitions for various Docker-friendly [Vagrant](http://www.vagrantup.com/) base boxes. There are boxes that are based on Ubuntu 12.04 64-bit, and boxes that are based on Ubuntu 14.04 64-bit. They reuse a lot of the hard work that the good people from [Phusion have created with their open-vagrant-boxes](https://github.com/phusion/open-vagrant-boxes) and differs only in that we install salt and a few extra packages (such as python dev tools, and the JDK).
 
  * We provide 2 virtual CPUs by default, so that the boxes can make better use of multicore hosts.
  * We provide more RAM by default: 1 GB.
@@ -16,69 +16,16 @@ This repository contains definitions for various Docker-friendly [Vagrant](http:
 
 These base boxes are automatically built from [Veewee](https://github.com/jedi4ever/veewee) definitions. These definitions make building boxes quick and unambigious. The entire building process is described in the definitions; no manual intervention is required.
 
-We provide prebuilt boxes at https://oss-binaries.phusionpassenger.com/vagrant/boxes/, but you can build them yourself if you so wish.
-
-The boxes are also available on [Vagrant Cloud](https://vagrantcloud.com/phusion).
-
-**Related resources**:
- [Github](https://github.com/phusion/open-vagrant-boxes) |
- [Prebuilt boxes](https://oss-binaries.phusionpassenger.com/vagrant/boxes/) |
- [Vagrant Cloud](https://vagrantcloud.com/phusion) |
- [Discussion forum](https://groups.google.com/forum/#!forum/passenger-docker) |
- [Twitter](https://twitter.com/phusion_nl) |
- [Blog](http://blog.phusion.nl)
 
 ## Using these boxes in Vagrant
 
-If you have Vagrant 1.5, you can use our boxes through [Vagrant Cloud](https://vagrantcloud.com/phusion):
+If you have Vagrant 1.5, you can use our boxes through [Vagrant Cloud](https://vagrantcloud.com/mojdigital):
 
-    vagrant init phusion/ubuntu-14.04-amd64
+    vagrant init mojdigital/ubuntu-14.04-amd64
     # -OR-
-    vagrant init phusion/ubuntu-12.04-amd64
-
-On older Vagrant versions, you can modify your Vagrantfile to use our boxes. Here is an example Vagrantfile which works with both VirtualBox and VMWare Fusion. It also automatically installs the latest version of Docker.
-
-    # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-    VAGRANTFILE_API_VERSION = "2"
-
-    Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-      config.vm.box = "phusion-open-ubuntu-14.04-amd64"
-      config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box"
-      # Or, for Ubuntu 12.04:
-      #config.vm.box = "phusion-open-ubuntu-12.04-amd64"
-      #config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-12.04-amd64-vbox.box"
-
-      config.vm.provider :vmware_fusion do |f, override|
-        override.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vmwarefusion.box"
-        #override.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-12.04-amd64-vmwarefusion.box"
-      end
-
-      if Dir.glob("#{File.dirname(__FILE__)}/.vagrant/machines/default/*/id").empty?
-        # Install Docker
-        pkg_cmd = "wget -q -O - https://get.docker.io/gpg | apt-key add -;" \
-          "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list;" \
-          "apt-get update -qq; apt-get install -q -y --force-yes lxc-docker; "
-        # Add vagrant user to the docker group
-        pkg_cmd << "usermod -a -G docker vagrant; "
-        config.vm.provision :shell, :inline => pkg_cmd
-      end
-    end
+    vagrant init mojdigital/ubuntu-12.04-amd64
 
 You can login with username `vagrant` and password `vagrant`. This user has sudo privileges. The root user also has password `vagrant`.
-
-The prebuilt boxes are available at https://oss-binaries.phusionpassenger.com/vagrant/boxes/
-
-## Next steps
-
-[<img src="http://www.phusion.nl/assets/logo.png">](http://www.phusion.nl/)
-
-These Vagrant boxes are provided to you by [Phusion](http://www.phusion.nl/). You may want to check out these too:
-
- * [Discussion forum](https://groups.google.com/forum/#!forum/passenger-docker) - For discussions about this project.
- * [Phusion Passenger](https://www.phusionpassenger.com/) - A fast, robust application server for Ruby, Python, Node.js, and Meteor.
- * [baseimage-docker](https://github.com/phusion/baseimage-docker) - A minimal Ubuntu Docker base image modified for Docker-friendliness.
- * [The Phusion blog](http://blog.phusion.nl) - For interesting articles and updates.
- * [Follow us on Twitter](https://twitter.com/phusion_nl)
 
 ## Building the boxes yourself
 
